@@ -1,0 +1,38 @@
+.container1{
+    width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-color:#080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form{
+    display: flex;
+  flex-direction: column;
+}
+.input{
+ width: 30%;
+ height: 33px;
+ min-width: 40px;
+ margin: 5px 0;
+ padding: 5px;
+}
+.button{
+    width: 15%;
+    border: none;
+    padding: 15px 20px;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+      border-radius: 10px;
+      margin-top: 20px;
+}
+.title{
+    font-size: 24px;
+  font-weight: 300;
+  color: white;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
