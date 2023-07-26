@@ -79,7 +79,10 @@ const Login = () => {
 
   const handleClick=(e)=>{
     e.preventDefault();
-    login(dispatch,{username,password},navigate("/"));
+    login(dispatch,{username,password});
+    // if(login){
+    //   navigate("/");
+    // }
   }
 
   return (

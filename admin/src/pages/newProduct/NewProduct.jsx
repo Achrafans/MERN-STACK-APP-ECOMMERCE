@@ -9,12 +9,16 @@ import {
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
+import {useHistory} from "react-router-dom";
+
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
+  const [size, setSize] = useState([]);
   const dispatch = useDispatch();
+  const navigate=useHistory();
 
   const handleChange= (e)=>{
     setInputs(prev=>{
@@ -26,6 +30,12 @@ export default function NewProduct() {
     setCat(e.target.value.split(","));
 
   }
+
+  const handleSize= (e)=>{
+    setSize(e.target.value.split(","));
+
+  }
+  
   const handleClick=(e)=>{
     e.preventDefault();
     const fileName= new Date().getTime() + file.name;
@@ -62,8 +72,12 @@ export default function NewProduct() {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat };
+          const product = { ...inputs, img: downloadURL, categories: cat, size:size };
           addProduct(product, dispatch);
+          if(addProduct){
+            navigate.push("/products");
+          }
+
         });
       }
     );
@@ -88,6 +102,14 @@ export default function NewProduct() {
         <div className="addProductItem">
           <label>Price</label>
           <input name="price" type="number" placeholder="100" onChange={handleChange} />
+        </div>
+        <div className="addProductItem">
+          <label>Size</label>
+          <input name="size" type="text" placeholder="xl, l , m, s" onChange={handleSize} />
+        </div>
+        <div className="addProductItem">
+          <label>Color</label>
+          <input name="color" type="text" placeholder="Color..." onChange={handleChange} />
         </div>
         <div className="addProductItem">
           <label>Categories</label>
